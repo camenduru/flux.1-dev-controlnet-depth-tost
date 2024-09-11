@@ -4,8 +4,8 @@
     "seed": 0,
     "steps": 20,
     "guidance": 3.5,
-    "lora_strength_model": 1,
-    "lora_strength_clip": 1,
+    "lora_strength_model": 0,
+    "lora_strength_clip": 0,
     "custom_lora_strength_model": 1,
     "custom_lora_strength_clip": 1,
     "controlnet_strength": 1,
@@ -13,5 +13,5 @@
     "scheduler": "simple",
     "final_width": 1024,
     "custom_lora_url": "https://files.catbox.moe/1fqbpb.safetensors",
-    "lora_file": "3d-chibi-toyair-dry-clay-style-flux_689231_771373.safetensors"
+    "lora_file": "xlabs_realism.safetensors"
 }

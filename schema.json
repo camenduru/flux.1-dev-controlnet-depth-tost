@@ -17,7 +17,7 @@
     },
     "input_image_check": {
         "type": "string",
-        "description": "Input Image URL",
+        "description": "Pose Image URL",
         "widget": "textarea"
     },
     "positive_prompt": {
@@ -114,7 +114,7 @@
     "custom_lora_strength_model": {
       "type": "number",
       "widget": "select",
-      "description": "Lora Strength Model",
+      "description": "Custom Lora Strength Model",
       "oneOf": [
         {
           "description": "0",
@@ -140,7 +140,7 @@
     "custom_lora_strength_clip": {
       "type": "number",
       "widget": "select",
-      "description": "Lora Strength Clip",
+      "description": "Custom Lora Strength Clip",
       "oneOf": [
         {
           "description": "0",
