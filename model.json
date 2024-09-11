@@ -1,0 +1,17 @@
+{
+    "input_image_check": "https://files.catbox.moe/y0tojs.png",
+    "positive_prompt": "a3r0ra",
+    "seed": 0,
+    "steps": 20,
+    "guidance": 3.5,
+    "lora_strength_model": 1,
+    "lora_strength_clip": 1,
+    "custom_lora_strength_model": 1,
+    "custom_lora_strength_clip": 1,
+    "controlnet_strength": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "final_width": 1024,
+    "custom_lora_url": "https://files.catbox.moe/1fqbpb.safetensors",
+    "lora_file": "3d-chibi-toyair-dry-clay-style-flux_689231_771373.safetensors"
+}
