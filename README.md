@@ -8,6 +8,7 @@ https://tost.ai
 ### 🧬 Code
 https://github.com/black-forest-labs/flux <br />
 https://github.com/DepthAnything/Depth-Anything-V2 <br />
+https://github.com/Fannovel16/comfyui_controlnet_aux <br />
 https://github.com/XLabs-AI/x-flux <br />
 
 ### 🌐 Page
