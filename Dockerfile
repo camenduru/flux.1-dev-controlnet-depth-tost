@@ -14,7 +14,7 @@ RUN adduser --disabled-password --gecos '' camenduru && \
 USER camenduru
 
 RUN pip install -q opencv-python imageio imageio-ffmpeg ffmpeg-python av runpod \
-    xformers==0.0.25 torchsde==0.2.6 einops==0.8.0 diffusers==0.28.0 transformers==4.41.2 accelerate==0.30.1 && \
+    xformers==0.0.25 torchsde==0.2.6 einops==0.8.0 diffusers==0.28.0 transformers==4.41.2 accelerate==0.30.1 matplotlib==3.9.1 && \
     git clone https://github.com/comfyanonymous/ComfyUI /content/ComfyUI && \
     git clone https://github.com/Fannovel16/comfyui_controlnet_aux /content/ComfyUI/custom_nodes/comfyui_controlnet_aux && \
     git clone https://github.com/XLabs-AI/x-flux-comfyui /content/ComfyUI/custom_nodes/x-flux-comfyui && \
