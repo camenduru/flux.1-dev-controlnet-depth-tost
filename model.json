@@ -1,6 +1,6 @@
 {
     "input_image_check": "https://files.catbox.moe/hlln10.jpeg",
-    "positive_prompt": "beautiful woman in balenciaga style, fashion, vogue image",
+    "positive_prompt": "beautiful a3r0ra in balenciaga style, fashion, vogue image",
     "negative_prompt": "bad photo",
     "seed": 0,
     "steps": 25,
