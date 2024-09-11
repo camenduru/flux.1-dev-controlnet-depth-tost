@@ -17,7 +17,7 @@ https://blackforestlabs.ai/ <br />
 https://depth-anything-v2.github.io/ <br />
 
 ### 🖼 Output
-
+![Screenshot 2024-09-12 001217](https://github.com/user-attachments/assets/da665b29-ce41-4e93-8e85-38fd7c0af4f2)
 
 ### 🏢 Sponsor
 https://runpod.io
