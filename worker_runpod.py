@@ -12,33 +12,22 @@ from comfy_extras import nodes_flux
 from comfy import model_management
 
 load_custom_node("/content/ComfyUI/custom_nodes/comfyui_controlnet_aux")
+load_custom_node("/content/ComfyUI/custom_nodes/x-flux-comfyui")
 
 CheckpointLoaderSimple = NODE_CLASS_MAPPINGS["CheckpointLoaderSimple"]()
-# DualCLIPLoader = NODE_CLASS_MAPPINGS["DualCLIPLoader"]()
-# UNETLoader = NODE_CLASS_MAPPINGS["UNETLoader"]()
-# VAELoader = NODE_CLASS_MAPPINGS["VAELoader"]()
-
 LoraLoader = NODE_CLASS_MAPPINGS["LoraLoader"]()
-FluxGuidance = nodes_flux.NODE_CLASS_MAPPINGS["FluxGuidance"]()
-RandomNoise = nodes_custom_sampler.NODE_CLASS_MAPPINGS["RandomNoise"]()
-BasicGuider = nodes_custom_sampler.NODE_CLASS_MAPPINGS["BasicGuider"]()
-KSamplerSelect = nodes_custom_sampler.NODE_CLASS_MAPPINGS["KSamplerSelect"]()
-BasicScheduler = nodes_custom_sampler.NODE_CLASS_MAPPINGS["BasicScheduler"]()
-SamplerCustomAdvanced = nodes_custom_sampler.NODE_CLASS_MAPPINGS["SamplerCustomAdvanced"]()
-VAELoader = NODE_CLASS_MAPPINGS["VAELoader"]()
+XlabsSampler = NODE_CLASS_MAPPINGS["XlabsSampler"]()
 VAEDecode = NODE_CLASS_MAPPINGS["VAEDecode"]()
 EmptyLatentImage = NODE_CLASS_MAPPINGS["EmptyLatentImage"]()
-ControlNetLoader = NODE_CLASS_MAPPINGS["ControlNetLoader"]()
-ControlNetApply = NODE_CLASS_MAPPINGS["ControlNetApply"]()
+LoadFluxControlNet = NODE_CLASS_MAPPINGS["LoadFluxControlNet"]()
+ApplyFluxControlNet = NODE_CLASS_MAPPINGS["ApplyFluxControlNet"]()
 LoadImage =  NODE_CLASS_MAPPINGS["LoadImage"]()
 DepthAnythingV2Preprocessor =  NODE_CLASS_MAPPINGS["DepthAnythingV2Preprocessor"]()
+CLIPTextEncodeFlux = nodes_flux.NODE_CLASS_MAPPINGS["CLIPTextEncodeFlux"]()
 
 with torch.inference_mode():
     unet, clip, vae = CheckpointLoaderSimple.load_checkpoint("flux1-dev-fp8-all-in-one.safetensors")
-    # clip = DualCLIPLoader.load_clip("t5xxl_fp16.safetensors", "clip_l.safetensors", "flux")[0]
-    # unet = UNETLoader.load_unet("flux1-dev.sft", "default")[0]
-    # vae = VAELoader.load_vae("ae.sft")[0]
-    controlnet = ControlNetLoader.load_controlnet("flux-depth-controlnet-v3.safetensors")[0]
+    controlnet = LoadFluxControlNet.loadmodel(model_name="flux-dev", controlnet_path="flux-depth-controlnet-v3.safetensors")[0]
 
 def closestNumber(n, m):
     q = int(n / m)
@@ -70,6 +59,7 @@ def generate(input):
     controlnet_strength = values['controlnet_strength']
     final_width = values['final_width']
     positive_prompt = values['positive_prompt']
+    negative_prompt = values['negative_prompt']
     seed = values['seed']
     steps = values['steps']
     guidance = values['guidance']
@@ -77,8 +67,6 @@ def generate(input):
     lora_strength_clip = values['lora_strength_clip']
     custom_lora_strength_model = values['custom_lora_strength_model']
     custom_lora_strength_clip = values['custom_lora_strength_clip']
-    sampler_name = values['sampler_name']
-    scheduler = values['scheduler']
     lora_file = values['lora_file']
     custom_lora_url = values['custom_lora_url']
     custom_lora_file = download_file(url=custom_lora_url, save_dir='/content/ComfyUI/models/loras')
@@ -89,25 +77,21 @@ def generate(input):
         seed = random.randint(0, 18446744073709551615)
     print(seed)
 
-    custom_unet_lora, custom_clip_lora = LoraLoader.load_lora(unet, clip, custom_lora_file, custom_lora_strength_model, custom_lora_strength_clip)
-    unet_lora, clip_lora = LoraLoader.load_lora(custom_unet_lora, custom_clip_lora, lora_file, lora_strength_model, lora_strength_clip)
-    cond, pooled = clip_lora.encode_from_tokens(clip_lora.tokenize(positive_prompt), return_pooled=True)
-    cond = [[cond, {"pooled_output": pooled}]]
-    cond = FluxGuidance.append(cond, guidance)[0]
-
+    custom_lora_unet, custom_lora_clip = LoraLoader.load_lora(unet, clip, custom_lora_file, custom_lora_strength_model, custom_lora_strength_clip)
+    lora_unet, lora_clip = LoraLoader.load_lora(custom_lora_unet, custom_lora_clip, lora_file, lora_strength_model, lora_strength_clip)
+    conditioning = CLIPTextEncodeFlux.encode(lora_clip, positive_prompt, positive_prompt, 4.0)[0]
+    neg_conditioning = CLIPTextEncodeFlux.encode(lora_clip, negative_prompt, negative_prompt, 4.0)[0]
     controlnet_image_width, controlnet_image_height = Image.open(controlnet_image).size
     controlnet_image_aspect_ratio = controlnet_image_width / controlnet_image_height
     final_height = final_width / controlnet_image_aspect_ratio
     controlnet_image = LoadImage.load_image(controlnet_image)[0]
     controlnet_depth = DepthAnythingV2Preprocessor.execute(controlnet_image, "depth_anything_v2_vitl.pth", resolution=1024)[0]
-    
-    cond = ControlNetApply.apply_controlnet(cond, controlnet, controlnet_depth, controlnet_strength)[0]
-    noise = RandomNoise.get_noise(seed)[0]
-    guider = BasicGuider.get_guider(unet_lora, cond)[0]
-    sampler = KSamplerSelect.get_sampler(sampler_name)[0]
-    sigmas = BasicScheduler.get_sigmas(unet_lora, scheduler, steps, 1.0)[0]
+    controlnet_condition = ApplyFluxControlNet.prepare(controlnet, controlnet_depth, controlnet_strength)[0]
     latent_image = EmptyLatentImage.generate(closestNumber(final_width, 16), closestNumber(final_height, 16))[0]
-    sample, sample_denoised = SamplerCustomAdvanced.sample(noise, guider, sampler, sigmas, latent_image)
+    sample = XlabsSampler.sampling(model=lora_unet, conditioning=conditioning, neg_conditioning=neg_conditioning,
+                            noise_seed=seed, steps=steps, timestep_to_start_cfg=1, true_gs=guidance,
+                            image_to_image_strength=0, denoise_strength=1,
+                            latent_image=latent_image, controlnet_condition=controlnet_condition)[0]
     decoded = VAEDecode.decode(vae, sample)[0].detach()
     Image.fromarray(np.array(decoded*255, dtype=np.uint8)[0]).save("/content/tost_flux_pose_lora.png")
 

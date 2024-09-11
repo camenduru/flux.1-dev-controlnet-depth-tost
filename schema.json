@@ -22,7 +22,12 @@
     },
     "positive_prompt": {
       "type": "string",
-      "description": "Prompt",
+      "description": "Positive Prompt",
+      "widget": "textarea"
+    },
+    "negative_prompt": {
+      "type": "string",
+      "description": "Negative Prompt",
       "widget": "textarea"
     },
     "seed": {
@@ -41,9 +46,21 @@
           ]
         },
         {
+          "description": "15",
+          "enum": [
+            15
+          ]
+        },
+        {
           "description": "20",
           "enum": [
             20
+          ]
+        },
+        {
+          "description": "25",
+          "enum": [
+            25
           ]
         },
         {
@@ -71,9 +88,57 @@
           ]
         },
         {
+          "description": "0.1",
+          "enum": [
+            0.1
+          ]
+        },
+        {
+          "description": "0.2",
+          "enum": [
+            0.2
+          ]
+        },
+        {
+          "description": "0.3",
+          "enum": [
+            0.3
+          ]
+        },
+        {
+          "description": "0.4",
+          "enum": [
+            0.4
+          ]
+        },
+        {
           "description": "0.5",
           "enum": [
             0.5
+          ]
+        },
+        {
+          "description": "0.6",
+          "enum": [
+            0.6
+          ]
+        },
+        {
+          "description": "0.7",
+          "enum": [
+            0.7
+          ]
+        },
+        {
+          "description": "0.8",
+          "enum": [
+            0.8
+          ]
+        },
+        {
+          "description": "0.9",
+          "enum": [
+            0.9
           ]
         },
         {
@@ -97,9 +162,57 @@
           ]
         },
         {
+          "description": "0.1",
+          "enum": [
+            0.1
+          ]
+        },
+        {
+          "description": "0.2",
+          "enum": [
+            0.2
+          ]
+        },
+        {
+          "description": "0.3",
+          "enum": [
+            0.3
+          ]
+        },
+        {
+          "description": "0.4",
+          "enum": [
+            0.4
+          ]
+        },
+        {
           "description": "0.5",
           "enum": [
             0.5
+          ]
+        },
+        {
+          "description": "0.6",
+          "enum": [
+            0.6
+          ]
+        },
+        {
+          "description": "0.7",
+          "enum": [
+            0.7
+          ]
+        },
+        {
+          "description": "0.8",
+          "enum": [
+            0.8
+          ]
+        },
+        {
+          "description": "0.9",
+          "enum": [
+            0.9
           ]
         },
         {
@@ -123,9 +236,57 @@
           ]
         },
         {
+          "description": "0.1",
+          "enum": [
+            0.1
+          ]
+        },
+        {
+          "description": "0.2",
+          "enum": [
+            0.2
+          ]
+        },
+        {
+          "description": "0.3",
+          "enum": [
+            0.3
+          ]
+        },
+        {
+          "description": "0.4",
+          "enum": [
+            0.4
+          ]
+        },
+        {
           "description": "0.5",
           "enum": [
             0.5
+          ]
+        },
+        {
+          "description": "0.6",
+          "enum": [
+            0.6
+          ]
+        },
+        {
+          "description": "0.7",
+          "enum": [
+            0.7
+          ]
+        },
+        {
+          "description": "0.8",
+          "enum": [
+            0.8
+          ]
+        },
+        {
+          "description": "0.9",
+          "enum": [
+            0.9
           ]
         },
         {
@@ -149,9 +310,57 @@
           ]
         },
         {
+          "description": "0.1",
+          "enum": [
+            0.1
+          ]
+        },
+        {
+          "description": "0.2",
+          "enum": [
+            0.2
+          ]
+        },
+        {
+          "description": "0.3",
+          "enum": [
+            0.3
+          ]
+        },
+        {
+          "description": "0.4",
+          "enum": [
+            0.4
+          ]
+        },
+        {
           "description": "0.5",
           "enum": [
             0.5
+          ]
+        },
+        {
+          "description": "0.6",
+          "enum": [
+            0.6
+          ]
+        },
+        {
+          "description": "0.7",
+          "enum": [
+            0.7
+          ]
+        },
+        {
+          "description": "0.8",
+          "enum": [
+            0.8
+          ]
+        },
+        {
+          "description": "0.9",
+          "enum": [
+            0.9
           ]
         },
         {
@@ -166,7 +375,7 @@
     "controlnet_strength": {
       "type": "number",
       "widget": "select",
-      "description": "Lora Strength Model",
+      "description": "ControlNet Strength Model",
       "oneOf": [
         {
           "description": "0",
@@ -175,9 +384,57 @@
           ]
         },
         {
+          "description": "0.1",
+          "enum": [
+            0.1
+          ]
+        },
+        {
+          "description": "0.2",
+          "enum": [
+            0.2
+          ]
+        },
+        {
+          "description": "0.3",
+          "enum": [
+            0.3
+          ]
+        },
+        {
+          "description": "0.4",
+          "enum": [
+            0.4
+          ]
+        },
+        {
           "description": "0.5",
           "enum": [
             0.5
+          ]
+        },
+        {
+          "description": "0.6",
+          "enum": [
+            0.6
+          ]
+        },
+        {
+          "description": "0.7",
+          "enum": [
+            0.7
+          ]
+        },
+        {
+          "description": "0.8",
+          "enum": [
+            0.8
+          ]
+        },
+        {
+          "description": "0.9",
+          "enum": [
+            0.9
           ]
         },
         {
@@ -188,112 +445,6 @@
         }
       ],
       "default": 1
-    },
-    "sampler_name": {
-      "type": "string",
-      "widget": "select",
-      "description": "Sampler Name",
-      "oneOf": [
-        {
-          "description": "euler",
-          "enum": [
-            "euler"
-          ]
-        },
-        {
-          "description": "heun",
-          "enum": [
-            "heun"
-          ]
-        },
-        {
-          "description": "heunpp2",
-          "enum": [
-            "heunpp2"
-          ]
-        },
-        {
-          "description": "dpm_2",
-          "enum": [
-            "dpm_2"
-          ]
-        },
-        {
-          "description": "lms",
-          "enum": [
-            "lms"
-          ]
-        },
-        {
-          "description": "dpmpp_2m",
-          "enum": [
-            "dpmpp_2m"
-          ]
-        },
-        {
-          "description": "ipndm",
-          "enum": [
-            "ipndm"
-          ]
-        },
-        {
-          "description": "deis",
-          "enum": [
-            "deis"
-          ]
-        },
-        {
-          "description": "ddim",
-          "enum": [
-            "ddim"
-          ]
-        },
-        {
-          "description": "uni_pc",
-          "enum": [
-            "uni_pc"
-          ]
-        },
-        {
-          "description": "uni_pc_bh2",
-          "enum": [
-            "uni_pc_bh2"
-          ]
-        }
-      ],
-      "default": "euler"
-    },
-    "scheduler": {
-      "type": "string",
-      "widget": "select",
-      "description": "Scheduler",
-      "oneOf": [
-        {
-          "description": "normal",
-          "enum": [
-            "normal"
-          ]
-        },
-        {
-          "description": "sgm_uniform",
-          "enum": [
-            "sgm_uniform"
-          ]
-        },
-        {
-          "description": "simple",
-          "enum": [
-            "simple"
-          ]
-        },
-        {
-          "description": "ddim_uniform",
-          "enum": [
-            "ddim_uniform"
-          ]
-        }
-      ],
-      "default": "simple"
     },
     "final_width": {
       "type": "integer",
