@@ -11,7 +11,7 @@ https://github.com/DepthAnything/Depth-Anything-V2 <br />
 https://github.com/XLabs-AI/x-flux <br />
 
 ### 🌐 Page
-https://blackforestlabs.ai/
+https://blackforestlabs.ai/ <br />
 https://depth-anything-v2.github.io/ <br />
 
 ### 🖼 Output
