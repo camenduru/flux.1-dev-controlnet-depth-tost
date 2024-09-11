@@ -1,0 +1,1098 @@
+{
+  "last_node_id": 75,
+  "last_link_id": 179,
+  "nodes": [
+    {
+      "id": 55,
+      "type": "INTConstant",
+      "pos": {
+        "0": -1240,
+        "1": -1580
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "value",
+          "type": "INT",
+          "links": [
+            131
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "INTConstant"
+      },
+      "widgets_values": [
+        16
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 60,
+      "type": "DepthAnythingV2Preprocessor",
+      "pos": {
+        "0": -1300,
+        "1": -1250
+      },
+      "size": {
+        "0": 418.47344970703125,
+        "1": 82
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 135
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            137,
+            142
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DepthAnythingV2Preprocessor"
+      },
+      "widgets_values": [
+        "depth_anything_v2_vitl.pth",
+        1024
+      ]
+    },
+    {
+      "id": 14,
+      "type": "ApplyFluxControlNet",
+      "pos": {
+        "0": -740,
+        "1": -1410
+      },
+      "size": {
+        "0": 393,
+        "1": 98
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "controlnet",
+          "type": "FluxControlNet",
+          "link": 44
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 142,
+          "slot_index": 1
+        },
+        {
+          "name": "controlnet_condition",
+          "type": "ControlNetCondition",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "controlnet_condition",
+          "type": "ControlNetCondition",
+          "links": [
+            28
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ApplyFluxControlNet"
+      },
+      "widgets_values": [
+        0.7000000000000001
+      ]
+    },
+    {
+      "id": 39,
+      "type": "PreviewImage",
+      "pos": {
+        "0": -740,
+        "1": -1240
+      },
+      "size": {
+        "0": 459.9723815917969,
+        "1": 333.75140380859375
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 137
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 56,
+      "type": "Image Aspect Ratio",
+      "pos": {
+        "0": -1320,
+        "1": -1780
+      },
+      "size": {
+        "0": 330,
+        "1": 106
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 140
+        },
+        {
+          "name": "width",
+          "type": "NUMBER",
+          "link": null
+        },
+        {
+          "name": "height",
+          "type": "NUMBER",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "aspect_number",
+          "type": "NUMBER",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "aspect_float",
+          "type": "FLOAT",
+          "links": [
+            130
+          ],
+          "slot_index": 1,
+          "shape": 3
+        },
+        {
+          "name": "is_landscape_bool",
+          "type": "NUMBER",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "aspect_ratio_common",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "aspect_type",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Image Aspect Ratio"
+      }
+    },
+    {
+      "id": 58,
+      "type": "EmptyLatentImage",
+      "pos": {
+        "0": -460,
+        "1": -1900
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 132,
+          "widget": {
+            "name": "width"
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 133,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            176
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1600,
+        904,
+        1
+      ]
+    },
+    {
+      "id": 57,
+      "type": "MathExpression|pysssss",
+      "pos": {
+        "0": -920,
+        "1": -1800
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "a",
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 129
+        },
+        {
+          "name": "b",
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 130
+        },
+        {
+          "name": "c",
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 131
+        }
+      ],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            133
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "(a/b)+(c-((a/b)%c))"
+      ]
+    },
+    {
+      "id": 54,
+      "type": "INTConstant",
+      "pos": {
+        "0": -1240,
+        "1": -1900
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "value",
+          "type": "INT",
+          "links": [
+            129,
+            132
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "INTConstant"
+      },
+      "widgets_values": [
+        1535
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 13,
+      "type": "LoadFluxControlNet",
+      "pos": {
+        "0": -1290,
+        "1": -1400
+      },
+      "size": {
+        "0": 376.7619934082031,
+        "1": 87.48989868164062
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "ControlNet",
+          "type": "FluxControlNet",
+          "links": [
+            44
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadFluxControlNet"
+      },
+      "widgets_values": [
+        "flux-dev",
+        "flux-depth-controlnet-v3.safetensors"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "CLIPTextEncodeFlux",
+      "pos": {
+        "0": -554,
+        "1": -2190
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 173,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            26
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeFlux"
+      },
+      "widgets_values": [
+        "bad photo",
+        "bad photo",
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncodeFlux",
+      "pos": {
+        "0": -560,
+        "1": -2450
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 172,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            18
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeFlux"
+      },
+      "widgets_values": [
+        "beautiful woman in balenciaga style, fashion, vogue image",
+        "beautiful woman in balenciaga style, fashion, vogue image",
+        4
+      ]
+    },
+    {
+      "id": 62,
+      "type": "LoraLoader",
+      "pos": {
+        "0": -492,
+        "1": -2642
+      },
+      "size": {
+        "0": 320,
+        "1": 130
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 149
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 150
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            174
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            172,
+            173
+          ],
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "8iiu0y.safetensors",
+        0,
+        0
+      ]
+    },
+    {
+      "id": 63,
+      "type": "LoraLoader",
+      "pos": {
+        "0": -865,
+        "1": -2639
+      },
+      "size": {
+        "0": 320,
+        "1": 130
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 170
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 171
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            149
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            150
+          ],
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "a3r0ra.safetensors",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 64,
+      "type": "CheckpointLoaderSimple",
+      "pos": {
+        "0": -1372,
+        "1": -2156
+      },
+      "size": {
+        "0": 513.8158569335938,
+        "1": 103.08895111083984
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            170
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            171
+          ],
+          "slot_index": 1,
+          "shape": 3
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            159
+          ],
+          "slot_index": 2,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "flux1-dev-fp8-all-in-one.safetensors"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "XlabsSampler",
+      "pos": {
+        "0": 63,
+        "1": -2211
+      },
+      "size": {
+        "0": 342.5999755859375,
+        "1": 282
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 174,
+          "slot_index": 0
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 18
+        },
+        {
+          "name": "neg_conditioning",
+          "type": "CONDITIONING",
+          "link": 26
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 176
+        },
+        {
+          "name": "controlnet_condition",
+          "type": "ControlNetCondition",
+          "link": 28
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            6
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "XlabsSampler"
+      },
+      "widgets_values": [
+        1,
+        "fixed",
+        25,
+        1,
+        3.5,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "type": "VAEDecode",
+      "pos": {
+        "0": 69,
+        "1": -1843
+      },
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 6,
+          "slot_index": 0
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 159
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            101,
+            178
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 16,
+      "type": "LoadImage",
+      "pos": {
+        "0": -2241,
+        "1": -2861
+      },
+      "size": [
+        610.7225950813718,
+        496.6124664641834
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            135,
+            140,
+            179
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "Over_the_shoulder_web.webp",
+        "image"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "SaveImage",
+      "pos": {
+        "0": -1633,
+        "1": -2818
+      },
+      "size": [
+        598.9052444583454,
+        455.6960254682085
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 101
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "canny_res"
+      ]
+    },
+    {
+      "id": 75,
+      "type": "Image Comparer (rgthree)",
+      "pos": {
+        "0": -2236,
+        "1": -2320
+      },
+      "size": [
+        723.9165832559515,
+        532.954043957372
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 179,
+          "dir": 3
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 178,
+          "dir": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "comparer_mode": "Slide"
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_qlexg_00001_.png&type=temp&subfolder=&rand=0.818167933901264"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_qlexg_00002_.png&type=temp&subfolder=&rand=0.6905554675310475"
+          }
+        ]
+      ]
+    }
+  ],
+  "links": [
+    [
+      6,
+      3,
+      0,
+      7,
+      0,
+      "LATENT"
+    ],
+    [
+      18,
+      5,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      26,
+      19,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      28,
+      14,
+      0,
+      3,
+      4,
+      "ControlNetCondition"
+    ],
+    [
+      44,
+      13,
+      0,
+      14,
+      0,
+      "FluxControlNet"
+    ],
+    [
+      101,
+      7,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      129,
+      54,
+      0,
+      57,
+      0,
+      "INT,FLOAT,IMAGE,LATENT"
+    ],
+    [
+      130,
+      56,
+      1,
+      57,
+      1,
+      "INT,FLOAT,IMAGE,LATENT"
+    ],
+    [
+      131,
+      55,
+      0,
+      57,
+      2,
+      "INT,FLOAT,IMAGE,LATENT"
+    ],
+    [
+      132,
+      54,
+      0,
+      58,
+      0,
+      "INT"
+    ],
+    [
+      133,
+      57,
+      0,
+      58,
+      1,
+      "INT"
+    ],
+    [
+      135,
+      16,
+      0,
+      60,
+      0,
+      "IMAGE"
+    ],
+    [
+      137,
+      60,
+      0,
+      39,
+      0,
+      "IMAGE"
+    ],
+    [
+      140,
+      16,
+      0,
+      56,
+      0,
+      "IMAGE"
+    ],
+    [
+      142,
+      60,
+      0,
+      14,
+      1,
+      "IMAGE"
+    ],
+    [
+      149,
+      63,
+      0,
+      62,
+      0,
+      "MODEL"
+    ],
+    [
+      150,
+      63,
+      1,
+      62,
+      1,
+      "CLIP"
+    ],
+    [
+      159,
+      64,
+      2,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      170,
+      64,
+      0,
+      63,
+      0,
+      "MODEL"
+    ],
+    [
+      171,
+      64,
+      1,
+      63,
+      1,
+      "CLIP"
+    ],
+    [
+      172,
+      62,
+      1,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      173,
+      62,
+      1,
+      19,
+      0,
+      "CLIP"
+    ],
+    [
+      174,
+      62,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      176,
+      58,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      178,
+      7,
+      0,
+      75,
+      1,
+      "IMAGE"
+    ],
+    [
+      179,
+      16,
+      0,
+      75,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6727499949325709,
+      "offset": [
+        2986.2268298662843,
+        2980.78539288372
+      ]
+    }
+  },
+  "version": 0.4
+}
