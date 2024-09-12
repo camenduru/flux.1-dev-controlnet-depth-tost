@@ -3193,6 +3193,7 @@
       "image4": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b6abc4a5-b8b5-4a68-8b73-322e8e1befde/width=450",
       "model": "https://civitai.com/models/686408/pen-drawings-flux?modelVersionId=768205",
       "widget": "example",
+      "trigger": "'blue pen drawing' or '<color> pen drawing'",
       "visibleIf": {
         "lora_file": [
           "pen-drawings-flux_686408_768205.safetensors"
