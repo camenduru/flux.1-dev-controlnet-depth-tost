@@ -14,6 +14,12 @@
       ],
       "widget": "readme"
     },
+    "upload1": {
+      "type": "string",
+      "widget": "upload",
+      "upload_url": "https://litterbox.catbox.moe/resources/internals/api.php",
+      "property": "input_image_check"
+    },
     "input_image_check": {
       "type": "string",
       "description": "Pose Image URL",
@@ -448,6 +454,12 @@
     "final_width": {
       "type": "integer",
       "description": "Width"
+    },
+    "upload2": {
+      "type": "string",
+      "widget": "upload",
+      "upload_url": "https://litterbox.catbox.moe/resources/internals/api.php",
+      "property": "custom_lora_url"
     },
     "custom_lora_url": {
       "type": "string",
