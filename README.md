@@ -23,4 +23,4 @@ https://huggingface.co/camenduru/FLUX.1-dev/tree/main
 ![Screenshot 2024-09-12 001217](https://github.com/user-attachments/assets/da665b29-ce41-4e93-8e85-38fd7c0af4f2)
 
 ### 🏢 Sponsor
-https://runpod.io
+[https://runpod.io](https://runpod.io?ref=iqi9iy8y)
